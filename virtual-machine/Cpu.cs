@@ -12,6 +12,11 @@ namespace Bat.Vm {
         }
 
         public void RunCode(bool debug) {
+            if(code == null) {
+                Logger.WriteLine("There is no code to run. Please call LoadCode(int[] newCode) method first.", LogLevel.WARNING, true);
+                return;
+            }
+
             int instructionPointer = 0;
             int stackPointer = -1;
 
