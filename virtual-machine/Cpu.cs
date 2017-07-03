@@ -14,7 +14,7 @@ namespace Bat.Vm {
 
         public void RunCode(bool debug) {
             if(code == null) {
-                Logger.WriteLine("There is no code to run. Please call LoadCode(int[] newCode) method first.", LogLevel.WARNING, true);
+                Logger.WriteLine("There is no code to run. Please call LoadCode(int[]) method first.", LogLevel.WARNING, true);
                 return;
             }
 
