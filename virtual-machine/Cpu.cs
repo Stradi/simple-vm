@@ -53,6 +53,9 @@ namespace Bat.Vm {
                     case Instructions.POP:
                         --stackPointer;
                         break;
+                    case Instructions.PRINT:
+                        Logger.WriteLine(string.Format("{0}", stack[stackPointer]), LogLevel.INFO, true);
+                        break;
                 }
 
                 opcode = (Instructions)code[instructionPointer];

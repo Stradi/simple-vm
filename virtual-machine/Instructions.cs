@@ -5,6 +5,7 @@
         MUL = 3,
         PUSH = 4,
         POP = 5,
-        EXIT = 6
+        PRINT = 6,
+        EXIT = 7
     };
 }
