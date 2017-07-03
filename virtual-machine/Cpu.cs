@@ -5,8 +5,13 @@ namespace Bat.Vm {
         public const int DEFAULT_STACK_SIZE = 1000;
         
         private int[] stack = new int[DEFAULT_STACK_SIZE];
+        private int[] code;
 
-        public void RunCode(int[] code, bool debug) {
+        public void LoadCode(int[] newCode) {
+            code = newCode;
+        }
+
+        public void RunCode(bool debug) {
             int instructionPointer = 0;
             int stackPointer = -1;
 
