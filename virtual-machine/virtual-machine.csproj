@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Cpu.cs" />
     <Compile Include="Instructions.cs" />
+    <Compile Include="Logger\Color.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

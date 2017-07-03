@@ -3,32 +3,55 @@ using System.IO;
 
 namespace Bat.Vm.Log {
     public static class Logger {
-        private static string LogTemplate = "{0}  \t: {1}";
+        private static string LogTemplate = "{0}: ";
 
-        public static void Write(string text) {
-            Write(text, LogLevel.DEFAULT);
+        public static void Write(string text, bool colored = false) {
+            Write(text, LogLevel.DEFAULT, colored);
         }
 
-        public static void Write(string text, LogLevel logLevel) {
-            Write(text, logLevel, Console.Out);
+        public static void Write(string text, LogLevel logLevel, bool colored = false) {
+            Write(text, logLevel, Console.Out, colored);
         }
 
-        public static void Write(string text, LogLevel logLevel, TextWriter logStream) {
-            string logText = string.Format(LogTemplate, GetTextFromLogLevel(logLevel), text);
+        public static void Write(string text, LogLevel logLevel, TextWriter logStream, bool colored = false) {
+            WriteLogText(logLevel, logStream, colored);            
+            logStream.Write(text);
+        }
+
+        public static void WriteLine(string text, bool colored = false) {
+            WriteLine(text, LogLevel.DEFAULT, colored);
+        }
+
+        public static void WriteLine(string text, LogLevel logLevel, bool colored = false) {
+            WriteLine(text, logLevel, Console.Out, colored);
+        }
+
+        public static void WriteLine(string text, LogLevel logLevel, TextWriter logStream, bool colored = false) {
+            WriteLogText(logLevel, logStream, colored);            
+            logStream.WriteLine(text);
+        }
+
+        private static void WriteLogText(LogLevel logLevel, TextWriter logStream, bool colored) {
+            string logText = string.Format(LogTemplate, GetTextFromLogLevel(logLevel));
+
+            if (colored && logStream == Console.Out) {
+                Color color = GetColorFromLogLevel(logLevel);
+                ChangeConsoleColor(ColorToConsoleColor(color));
+            }
+
             logStream.Write(logText);
+
+            if (colored && logStream == Console.Out) {
+                ResetConsoleColor();
+            }
         }
 
-        public static void WriteLine(string text) {
-            WriteLine(text, LogLevel.DEFAULT);
+        private static void ChangeConsoleColor(ConsoleColor color) {
+            Console.ForegroundColor = color;
         }
 
-        public static void WriteLine(string text, LogLevel logLevel) {
-            WriteLine(text, logLevel, Console.Out);
-        }
-
-        public static void WriteLine(string text, LogLevel logLevel, TextWriter logStream) {
-            string logText = string.Format(LogTemplate, GetTextFromLogLevel(logLevel), text);
-            logStream.WriteLine(logText);
+        private static void ResetConsoleColor() {
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private static string GetTextFromLogLevel(LogLevel logLevel) {
@@ -46,6 +69,64 @@ namespace Bat.Vm.Log {
                 case LogLevel.DEFAULT:
                 default:
                     return "[DEFAULT]";
+            }
+        }
+
+        private static Color GetColorFromLogLevel(LogLevel logLevel) {
+            switch (logLevel) {
+                case LogLevel.DEFAULT:
+                    return Color.White;
+                case LogLevel.INFO:
+                    return Color.DarkBlue;
+                case LogLevel.DEBUG:
+                    return Color.Green;
+                case LogLevel.WARNING:
+                    return Color.Red;
+                case LogLevel.ERROR:
+                    return Color.DarkMagenta;
+                case LogLevel.FATAL:
+                    return Color.DarkRed;
+                default:
+                    return Color.White;
+            }
+        }
+
+        private static ConsoleColor ColorToConsoleColor(Color color) {
+            switch (color) {
+                case Color.Black:
+                    return ConsoleColor.Black;
+                case Color.White:
+                    return ConsoleColor.White;
+                case Color.Blue:
+                    return ConsoleColor.Blue;
+                case Color.Cyan:
+                    return ConsoleColor.Cyan;
+                case Color.Gray:
+                    return ConsoleColor.Gray;
+                case Color.Green:
+                    return ConsoleColor.Green;
+                case Color.Magenta:
+                    return ConsoleColor.Magenta;
+                case Color.Red:
+                    return ConsoleColor.Red;
+                case Color.Yellow:
+                    return ConsoleColor.Yellow;
+                case Color.DarkBlue:
+                    return ConsoleColor.DarkBlue;
+                case Color.DarkCyan:
+                    return ConsoleColor.DarkCyan;
+                case Color.DarkGray:
+                    return ConsoleColor.DarkGray;
+                case Color.DarkGreen:
+                    return ConsoleColor.DarkGreen;
+                case Color.DarkMagenta:
+                    return ConsoleColor.DarkMagenta;
+                case Color.DarkRed:
+                    return ConsoleColor.DarkRed;
+                case Color.DarkYellow:
+                    return ConsoleColor.DarkYellow;
+                default:
+                    return ConsoleColor.White;
             }
         }
     }

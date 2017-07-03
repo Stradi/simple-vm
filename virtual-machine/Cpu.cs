@@ -26,7 +26,7 @@ namespace Bat.Vm {
                         result = a + b;
                         stack[++stackPointer] = result;
                         if(debug) {
-                            Logger.WriteLine(string.Format("{0} + {1} = {2}", a, b, result), LogLevel.DEBUG);
+                            Logger.WriteLine(string.Format("{0} + {1} = {2}", a, b, result), LogLevel.DEBUG, true);
                         }
                         break;
                     case Instructions.SUB:
@@ -35,7 +35,7 @@ namespace Bat.Vm {
                         result = a - b;
                         stack[++stackPointer] = result;
                         if (debug) {
-                            Logger.WriteLine(string.Format("{0} - {1} = {2}", a, b, result), LogLevel.DEBUG);
+                            Logger.WriteLine(string.Format("{0} - {1} = {2}", a, b, result), LogLevel.DEBUG, true);
                         }
                         break;
                     case Instructions.MUL:
@@ -44,7 +44,7 @@ namespace Bat.Vm {
                         result = a * b;
                         stack[++stackPointer] = result;
                         if (debug) {
-                            Logger.WriteLine(string.Format("{0} * {1} = {2}", a, b, result), LogLevel.DEBUG);
+                            Logger.WriteLine(string.Format("{0} * {1} = {2}", a, b, result), LogLevel.DEBUG, true);
                         }
                         break;
                     case Instructions.PUSH:
