@@ -64,8 +64,6 @@ namespace Bat.Vm.Log {
                     return "[WARNING]";
                 case LogLevel.ERROR:
                     return "[ERROR]";
-                case LogLevel.FATAL:
-                    return "[FATAL]";
                 case LogLevel.DEFAULT:
                 default:
                     return "[DEFAULT]";
@@ -84,8 +82,6 @@ namespace Bat.Vm.Log {
                     return Color.Red;
                 case LogLevel.ERROR:
                     return Color.DarkMagenta;
-                case LogLevel.FATAL:
-                    return Color.DarkRed;
                 default:
                     return Color.White;
             }

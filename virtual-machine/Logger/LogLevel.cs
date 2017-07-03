@@ -4,7 +4,6 @@
         INFO,
         DEBUG,
         WARNING,
-        ERROR,
-        FATAL
+        ERROR
     }
 }
