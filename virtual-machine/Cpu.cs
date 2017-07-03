@@ -3,7 +3,8 @@
 namespace Bat.Vm {
     public class Cpu {
         public const int DEFAULT_STACK_SIZE = 1000;
-        
+        public const int DEFAULT_STACK_PRINT_SIZE = 10;
+
         private int[] stack = new int[DEFAULT_STACK_SIZE];
         private int[] code;
 
@@ -70,6 +71,16 @@ namespace Bat.Vm {
 
                 opcode = (Instructions)code[instructionPointer];
             }
+        }
+
+        public void PrintStack(int count = DEFAULT_STACK_PRINT_SIZE) {
+            Logger.WriteLine("Stack = [", writeLogLevel: false);
+
+            for (int i = 0; i < count; i++) {
+                Logger.WriteLine("\t" + stack[i].ToString(), writeLogLevel: false);
+            }
+
+            Logger.WriteLine("];", writeLogLevel: false);
         }
     }
 }
