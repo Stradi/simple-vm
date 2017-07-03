@@ -3,9 +3,10 @@
         ADD = 1,
         SUB = 2,
         MUL = 3,
-        PUSH = 4,
-        POP = 5,
-        PRINT = 6,
-        EXIT = 7
+        DIV = 4,
+        PUSH = 5,
+        POP = 6,
+        PRINT = 7,
+        EXIT = 8
     };
 }

@@ -58,6 +58,19 @@ namespace Bat.Vm {
                             Logger.WriteLine(string.Format("{0} * {1} = {2}", a, b, result), LogLevel.DEBUG, true);
                         }
                         break;
+                    case Instructions.DIV:
+                        b = stack[stackPointer--];
+                        a = stack[stackPointer--];
+                        if(b == 0) {
+                            Logger.WriteLine(string.Format("Cannot divide to zero. Op: {0} / {1}", a, b), LogLevel.ERROR, true, true);
+                            return;
+                        }
+                        result = a / b;
+                        stack[++stackPointer] = result;
+                        if(debug) {
+                            Logger.WriteLine(string.Format("{0} / {1} = {2}", a, b, result), LogLevel.DEBUG, true);
+                        }
+                        break;
                     case Instructions.PUSH:
                         stack[++stackPointer] = code[instructionPointer++];
                         break;
