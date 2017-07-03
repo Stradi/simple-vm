@@ -5,29 +5,33 @@ namespace Bat.Vm.Log {
     public static class Logger {
         private static string LogTemplate = "{0}: ";
 
-        public static void Write(string text, bool colored = false) {
-            Write(text, LogLevel.DEFAULT, colored);
+        public static void Write(string text, bool colored = false, bool writeLogLevel = true) {
+            Write(text, LogLevel.DEFAULT, colored, writeLogLevel);
         }
 
-        public static void Write(string text, LogLevel logLevel, bool colored = false) {
-            Write(text, logLevel, Console.Out, colored);
+        public static void Write(string text, LogLevel logLevel, bool colored = false, bool writeLogLevel = true) {
+            Write(text, logLevel, Console.Out, colored, writeLogLevel);
         }
 
-        public static void Write(string text, LogLevel logLevel, TextWriter logStream, bool colored = false) {
-            WriteLogText(logLevel, logStream, colored);            
+        public static void Write(string text, LogLevel logLevel, TextWriter logStream, bool colored = false, bool writeLogLevel = true) {
+            if (writeLogLevel) {
+                WriteLogText(logLevel, logStream, colored);
+            }
             logStream.Write(text);
         }
 
-        public static void WriteLine(string text, bool colored = false) {
-            WriteLine(text, LogLevel.DEFAULT, colored);
+        public static void WriteLine(string text, bool colored = false, bool writeLogLevel = true) {
+            WriteLine(text, LogLevel.DEFAULT, colored, writeLogLevel);
         }
 
-        public static void WriteLine(string text, LogLevel logLevel, bool colored = false) {
-            WriteLine(text, logLevel, Console.Out, colored);
+        public static void WriteLine(string text, LogLevel logLevel, bool colored = false, bool writeLogLevel = true) {
+            WriteLine(text, logLevel, Console.Out, colored, writeLogLevel);
         }
 
-        public static void WriteLine(string text, LogLevel logLevel, TextWriter logStream, bool colored = false) {
-            WriteLogText(logLevel, logStream, colored);            
+        public static void WriteLine(string text, LogLevel logLevel, TextWriter logStream, bool colored = false, bool writeLogLevel = true) {
+            if (writeLogLevel) {
+                WriteLogText(logLevel, logStream, colored);
+            }
             logStream.WriteLine(text);
         }
 
