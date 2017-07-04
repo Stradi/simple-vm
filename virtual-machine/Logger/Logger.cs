@@ -3,6 +3,12 @@ using System.IO;
 
 namespace Bat.Vm.Log {
     public static class Logger {
+        public const Color DEFAULT_LOGLEVEL_COLOR = Color.White;
+        public const Color INFO_LOGLEVEL_COLOR = Color.DarkBlue;
+        public const Color DEBUG_LOGLEVEL_COLOR = Color.Green;
+        public const Color WARNING_LOGLEVEL_COLOR = Color.Red;
+        public const Color ERROR_LOGLEVEL_COLOR = Color.DarkMagenta;
+
         private static string LogTemplate = "{0}: ";
 
         public static void Write(string text, bool colored = false, bool writeLogLevel = true) {
@@ -74,17 +80,17 @@ namespace Bat.Vm.Log {
         private static Color GetColorFromLogLevel(LogLevel logLevel) {
             switch (logLevel) {
                 case LogLevel.DEFAULT:
-                    return Color.White;
+                    return DEFAULT_LOGLEVEL_COLOR;
                 case LogLevel.INFO:
-                    return Color.DarkBlue;
+                    return INFO_LOGLEVEL_COLOR;
                 case LogLevel.DEBUG:
-                    return Color.Green;
+                    return DEBUG_LOGLEVEL_COLOR;
                 case LogLevel.WARNING:
-                    return Color.Red;
+                    return WARNING_LOGLEVEL_COLOR;
                 case LogLevel.ERROR:
-                    return Color.DarkMagenta;
+                    return ERROR_LOGLEVEL_COLOR;
                 default:
-                    return Color.White;
+                    return DEFAULT_LOGLEVEL_COLOR;
             }
         }
 
