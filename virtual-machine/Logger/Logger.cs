@@ -29,10 +29,7 @@ namespace Bat.Vm.Log {
         }
 
         public static void WriteLine(string text, LogLevel logLevel, TextWriter logStream, bool colored = false, bool writeLogLevel = true) {
-            if (writeLogLevel) {
-                WriteLogText(logLevel, logStream, colored);
-            }
-            logStream.WriteLine(text);
+            Write(text + "\n", logLevel, logStream, colored, writeLogLevel);
         }
 
         private static void WriteLogText(LogLevel logLevel, TextWriter logStream, bool colored) {
